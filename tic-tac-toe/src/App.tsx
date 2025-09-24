@@ -11,23 +11,42 @@ function App() {
 
   function buttonClicked(gameState: GameState, row: number, col: number) {
       // 1. change game state
+      
       const newGameState = makeMove(gameState, row, col);
       // 2. call setGame(newGameState)
       
       setGame(newGameState);
+      //GameResolve(newGameState);
   }
 
   //takes in a pre-defined row and column, returns one call to function buttonClicked, taking in row and col
-  function Cell(props: { row: number, col: number}) {
+  function Cell(props: { row: number, col: number}) { 
     return (
       <button onClick={() => buttonClicked(game, props.row, props.col)}>Move: {game.board[props.row][props.col]}</button>
     )
+
   }
+
+ /* function GameResolve: JSX.Element (gameState: GameState) {
+
+  let winnerElement = <div></div>
+  if (gameState.isGameOver && gameState.isTie) {
+    winnerElement = (<div>Game over! Tie Game</div>)
+  }
+  else
+  {
+    winnerElement = (<div>Game Over: Winner is {gameState.currentPlayer}</div>)
+  }
+ {game.outputMessage}
+}*/
+
   return (
     <>
+    
       <div>
+        {game.outputMessage}
         <div>
-            <Cell row={0} col={0}></Cell>
+            <Cell row={0} col={0}></Cell> 
             <Cell row={0} col={1}></Cell>
             <Cell row={0} col={2}></Cell>
         </div>
@@ -42,6 +61,7 @@ function App() {
             <Cell row={2} col={2}></Cell>
         </div>
       </div>
+
     </>
   )
 }
